@@ -1,14 +1,10 @@
 # backend/routers/chat.py
 from fastapi import APIRouter
-from pydantic import BaseModel
+from models.schemas import ChatRequest
 from services.chat_service import process_message
 from utils.logger import logger, chat_logger
 
 router = APIRouter(prefix="/chat", tags=["chat"])
-
-class ChatRequest(BaseModel):
-    user: str
-    message: str
 
 @router.post("/")
 async def chat_endpoint(body: ChatRequest):
